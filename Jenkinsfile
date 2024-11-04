@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo 'Testing...'
+                echo 'I am Testing...'
                 // Here, include commands to run your test files, e.g., `npm test` or `pytest`
             }
         }

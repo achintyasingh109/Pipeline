@@ -39,6 +39,7 @@ pipeline {
     }
     post {
         always {
+            **/target/surefire-reports/*.xml
             echo 'Pipeline completed.'
             
         }

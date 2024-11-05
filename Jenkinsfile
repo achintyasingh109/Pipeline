@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    tools {
+        maven 'Maven3' // Reference the name you gave Maven in Global Tool Configuration
+    }
     parameters {
         string(name: 'REPO_URL', defaultValue: 'https://github.com/achintyasingh109/jUNIT.git')
         string(name: 'BRANCH', defaultValue: 'main', description: 'Branch to build')

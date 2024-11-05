@@ -18,13 +18,13 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
-                sh 'mvn clean install'
+                bat 'mvn clean install'
             }
         }
         stage('Test') {
             steps {
                 echo 'I am Testing...'
-                sh 'mvn test'
+                bat 'mvn test'
                 // Here, include commands to run your test files, e.g., `npm test` or `pytest`
             }
         }

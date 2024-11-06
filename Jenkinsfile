@@ -21,7 +21,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
-                   dir('junit') {  // Change directory to the folder containing pom.xml
+                   dir('jUNIT') {  // Change directory to the folder containing pom.xml
                     bat 'mvn clean install'
                 }
                 
@@ -30,7 +30,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'I am Testing...'
-                dir('junit') {  // Change directory to the folder containing pom.xml
+                dir('jUNIT') {  // Change directory to the folder containing pom.xml
                     bat 'mvn test'
                 }
                 // Here, include commands to run your test files, e.g., `npm test` or `pytest`
@@ -44,7 +44,7 @@ pipeline {
     }
     post {
         always {
-             dir('junit') {  // Ensure we are in the correct directory to find the test reports
+             dir('jUNIT') {  // Ensure we are in the correct directory to find the test reports
                 junit '**/target/surefire-reports/*.xml'
             }
             echo 'Pipeline completed.'

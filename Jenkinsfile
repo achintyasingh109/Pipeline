@@ -7,6 +7,9 @@ pipeline {
         string(name: 'REPO_URL', defaultValue: 'https://github.com/achintyasingh109/jUNIT.git')
         string(name: 'BRANCH', defaultValue: 'main', description: 'Branch to build')
     }
+    environment {
+        EMAIL_RECIPIENTS = 'achintyasingh009@gmail.com'  // Replace with your recipient's email address
+    }
     
 
     stages {

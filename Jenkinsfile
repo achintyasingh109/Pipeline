@@ -4,7 +4,7 @@ pipeline {
         maven 'Maven3' // Reference the name you gave Maven in Global Tool Configuration
     }
     parameters {
-        string(name: 'REPO_URL', defaultValue: 'https://github.com/achintyasingh109/jUNIT/tree/main/jUNIT.git')
+        string(name: 'REPO_URL', defaultValue: 'https://github.com/achintyasingh109/jUNIT.git')
         string(name: 'BRANCH', defaultValue: 'main', description: 'Branch to build')
     }
     
@@ -21,9 +21,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
-                dir('jUNIT') { // Replace 'jUNIT' with the actual subdirectory containing pom.xml
                     bat 'mvn clean install'
-                }
+                
             }
         }
         stage('Test') {

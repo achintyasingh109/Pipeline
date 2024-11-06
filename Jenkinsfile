@@ -50,11 +50,41 @@ pipeline {
             echo 'Pipeline completed.'
             
         }
-        success{
-            echo 'Pipeline successfully build.'
+        success {
+            echo 'Pipeline completed successfully.'
+            // Email on success
+            emailext (
+                to: "${EMAIL_RECIPIENTS}",
+                subject: "Jenkins Build Success: ${env.JOB_NAME} - ${env.BUILD_NUMBER}",
+                body: "The build was successful.\n\n${BUILD_URL}"
+            )
         }
-        failure{
+        failure {
             echo 'Pipeline failed.'
+            // Email on failure
+            emailext (
+                to: "${EMAIL_RECIPIENTS}",
+                subject: "Jenkins Build Failure: ${env.JOB_NAME} - ${env.BUILD_NUMBER}",
+                body: "The build failed.\n\n${BUILD_URL}\n\nCheck the Jenkins console output for details."
+            )
         }
-    }
+        unstable {
+            echo 'Pipeline is unstable.'
+            // Email on unstable build (e.g., failing tests)
+            emailext (
+                to: "${EMAIL_RECIPIENTS}",
+                subject: "Jenkins Build Unstable: ${env.JOB_NAME} - ${env.BUILD_NUMBER}",
+                body: "The build is unstable.\n\n${BUILD_URL}\n\nCheck the Jenkins console output for details."
+            )
+        }
+        aborted {
+            echo 'Pipeline was aborted.'
+            // Email when the build is aborted
+            emailext (
+                to: "${EMAIL_RECIPIENTS}",
+                subject: "Jenkins Build Aborted: ${env.JOB_NAME} - ${env.BUILD_NUMBER}",
+                body: "The build was aborted.\n\n${BUILD_URL}"
+            )
+        }
+}
 }

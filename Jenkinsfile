@@ -21,7 +21,9 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
-                bat 'mvn clean install'
+                dir('jUNIT') { // Replace 'jUNIT' with the actual subdirectory containing pom.xml
+                    bat 'mvn clean install'
+                }
             }
         }
         stage('Test') {
